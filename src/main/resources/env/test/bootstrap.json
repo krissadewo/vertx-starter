@@ -1,0 +1,15 @@
+{
+  "active.profile": "test",
+  "service.name": "service-core",
+  "service.port": 8080,
+  "jaeger": {
+    "host": "localhost"
+  },
+  "kafka": {
+    "servers": "localhost:9092",
+    "group": "vertx.starter"
+  },
+  "mongodb": {
+    "uris": "mongodb://root:root@mongo.local1:27017,mongo.local2:27018,mongo.local3:27019"
+  }
+}
