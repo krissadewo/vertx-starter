@@ -3,6 +3,7 @@ package id.or.greenlabs.vertx.starter.common;
 import id.or.greenlabs.vertx.starter.assembler.dto.CategoryDto;
 import id.or.greenlabs.vertx.starter.assembler.dto.ProductDto;
 import id.or.greenlabs.vertx.starter.document.Category;
+import id.or.greenlabs.vertx.starter.document.Order;
 import id.or.greenlabs.vertx.starter.document.Product;
 import org.bson.types.ObjectId;
 
@@ -35,5 +36,14 @@ public class DummyData {
         product.setCategory(new CategoryDto(new ObjectId().toHexString()));
 
         return product;
+    }
+
+    public Order order(Product product) {
+        Order order = new Order();
+        order.setProductId(product.getId());
+        order.setQty(8);
+        order.setType(Order.Type.SELL);
+
+        return order;
     }
 }
