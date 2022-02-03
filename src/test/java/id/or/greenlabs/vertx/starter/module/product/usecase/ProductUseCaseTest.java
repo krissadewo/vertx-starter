@@ -3,7 +3,6 @@ package id.or.greenlabs.vertx.starter.module.product.usecase;
 import id.or.greenlabs.vertx.starter.assembler.dto.ProductDto;
 import id.or.greenlabs.vertx.starter.common.DefaultException;
 import id.or.greenlabs.vertx.starter.common.StatusCode;
-import id.or.greenlabs.vertx.starter.document.Product;
 import id.or.greenlabs.vertx.starter.module.product.usecase.impl.FindAllImpl;
 import id.or.greenlabs.vertx.starter.module.product.usecase.impl.FindByIdImpl;
 import id.or.greenlabs.vertx.starter.module.product.usecase.impl.SaveImpl;
@@ -17,7 +16,7 @@ import reactor.core.publisher.Mono;
  * @author krissadewo
  * @date 1/31/22 2:30 PM
  */
-class UseCaseTest extends BaseTest {
+class ProductUseCaseTest extends BaseTest {
 
     private Save save;
 

@@ -1,5 +1,6 @@
 package id.or.greenlabs.vertx.starter;
 
+import id.or.greenlabs.vertx.starter.common.DummyData;
 import id.or.greenlabs.vertx.starter.common.subscribe.SingleSubscriber;
 import id.or.greenlabs.vertx.starter.config.EnvironmentConfig;
 import id.or.greenlabs.vertx.starter.config.MongoConfig;
@@ -28,6 +29,8 @@ public abstract class AbstractGenericTest {
     protected MongoConfig mongoConfig;
 
     protected EnvironmentConfig environmentConfig;
+
+    protected DummyData dummyData = new DummyData();
 
     @BeforeAll
     void init(Vertx vertx, VertxTestContext context) throws IOException {

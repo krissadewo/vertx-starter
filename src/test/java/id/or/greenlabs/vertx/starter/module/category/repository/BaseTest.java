@@ -3,8 +3,6 @@ package id.or.greenlabs.vertx.starter.module.category.repository;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import id.or.greenlabs.vertx.starter.AbstractGenericTest;
-import id.or.greenlabs.vertx.starter.common.DummyData;
-import id.or.greenlabs.vertx.starter.config.MongoConfig;
 import id.or.greenlabs.vertx.starter.module.VertxModule;
 import id.or.greenlabs.vertx.starter.module.category.CategoryModule;
 import id.or.greenlabs.vertx.starter.repository.MongoModule;
@@ -18,8 +16,6 @@ import io.vertx.ext.web.Router;
 public abstract class BaseTest extends AbstractGenericTest {
 
     protected Injector injector;
-
-    protected DummyData dummyData = new DummyData();
 
     protected void prepareBuilder(Vertx vertx) {
         injector = Guice.createInjector(

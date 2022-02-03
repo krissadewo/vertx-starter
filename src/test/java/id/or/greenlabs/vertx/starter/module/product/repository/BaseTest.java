@@ -20,8 +20,6 @@ public abstract class BaseTest extends AbstractGenericTest {
 
     protected Injector injector;
 
-    protected DummyData dummyData = new DummyData();
-
     protected void prepareBuilder(Vertx vertx) {
         injector = Guice.createInjector(
             new VertxModule(vertx, Router.router(vertx), environmentConfig.getEnv()),
