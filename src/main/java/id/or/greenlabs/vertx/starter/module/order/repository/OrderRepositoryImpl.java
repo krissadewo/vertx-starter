@@ -16,6 +16,7 @@ import reactor.core.publisher.Mono;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author krissadewo
@@ -29,13 +30,11 @@ public class OrderRepositoryImpl extends GenericRepository implements OrderRepos
     }
 
     @Override
-    public Mono<Order> save(Order document) {
-        return Mono.from(mongoConfig.getOrderCollection().insertOne(document))
-            .flatMap(insertOneResult -> {
-                if (insertOneResult.wasAcknowledged() && insertOneResult.getInsertedId() != null) {
-                    document.setId(insertOneResult.getInsertedId().asObjectId().getValue());
-
-                    return Mono.just(document);
+    public Mono<Integer> save(List<Order> document) {
+        return Mono.from(mongoConfig.getOrderCollection().insertMany(document))
+            .flatMap(insertManyResult -> {
+                if (insertManyResult.wasAcknowledged() && insertManyResult.getInsertedIds().size() == document.size()) {
+                    return Mono.just(insertManyResult.getInsertedIds().size());
                 }
 
                 return Mono.error(new DefaultException(StatusCode.OPERATION_FAILED));

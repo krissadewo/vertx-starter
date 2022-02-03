@@ -9,6 +9,7 @@ import io.vertx.junit5.VertxTestContext;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -21,7 +22,7 @@ class OrderRepositoryTest extends BaseTest {
 
     private ProductRepository productRepository;
 
-    private static id.or.greenlabs.vertx.starter.document.Order order;
+    private static Integer orders;
 
     private static Product product;
 
@@ -52,10 +53,10 @@ class OrderRepositoryTest extends BaseTest {
     @Order(1)
     @Test
     void saveOrder(final VertxTestContext context) {
-        orderRepository.save(dummyData.order(product))
+        orderRepository.save(dummyData.orders(product))
             .switchIfEmpty(Mono.error(new DefaultException(StatusCode.OPERATION_FAILED)))
             .flatMap(object -> {
-                order = object;
+                orders = object;
 
                 return Mono.just(object);
             })
@@ -71,7 +72,9 @@ class OrderRepositoryTest extends BaseTest {
     void find(final VertxTestContext context) {
         orderRepository.find(null, 10, 0)
             .switchIfEmpty(Mono.error(new DefaultException(StatusCode.OPERATION_FAILED)))
-            .flatMap(Mono::just)
+            .flatMap(order -> {
+                return Flux.just(order);
+            })
             .doFinally(signalType -> {
                 context.completeNow();
             })

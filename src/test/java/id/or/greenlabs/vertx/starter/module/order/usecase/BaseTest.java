@@ -1,8 +1,9 @@
-package id.or.greenlabs.vertx.starter.module.order.repository;
+package id.or.greenlabs.vertx.starter.module.order.usecase;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import id.or.greenlabs.vertx.starter.AbstractGenericTest;
+import id.or.greenlabs.vertx.starter.common.DummyData;
 import id.or.greenlabs.vertx.starter.module.VertxModule;
 import id.or.greenlabs.vertx.starter.module.order.OrderModule;
 import id.or.greenlabs.vertx.starter.module.product.ProductModule;

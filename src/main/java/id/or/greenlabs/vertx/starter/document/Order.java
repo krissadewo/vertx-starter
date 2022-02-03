@@ -22,6 +22,8 @@ public class Order implements Serializable {
 
     private Product product;
 
+    private String code;
+
     private int qty;
 
     private Type type;

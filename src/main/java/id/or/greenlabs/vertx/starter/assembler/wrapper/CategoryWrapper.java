@@ -3,6 +3,7 @@ package id.or.greenlabs.vertx.starter.assembler.wrapper;
 import id.or.greenlabs.vertx.starter.assembler.dto.CategoryDto;
 import id.or.greenlabs.vertx.starter.assembler.generic.Assembler;
 import id.or.greenlabs.vertx.starter.document.Category;
+import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,6 +45,7 @@ public class CategoryWrapper implements Assembler<CategoryDto, Category> {
     @Override
     public Category toDocument(CategoryDto dto) {
         Category document = new Category();
+        document.setId(new ObjectId(dto.getId()));
         document.setName(dto.getName());
 
         return document;
