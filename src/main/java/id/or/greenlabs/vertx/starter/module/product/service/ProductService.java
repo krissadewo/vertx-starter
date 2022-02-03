@@ -3,7 +3,6 @@ package id.or.greenlabs.vertx.starter.module.product.service;
 import id.or.greenlabs.vertx.starter.assembler.dto.ProductDto;
 import id.or.greenlabs.vertx.starter.assembler.wrapper.ProductWrapper;
 import id.or.greenlabs.vertx.starter.common.StatusCode;
-import id.or.greenlabs.vertx.starter.document.Product;
 import id.or.greenlabs.vertx.starter.module.product.port.ProductAdapter;
 import id.or.greenlabs.vertx.starter.module.product.repository.ProductRepository;
 import id.or.greenlabs.vertx.starter.service.ApplicationService;
@@ -30,13 +29,17 @@ public class ProductService extends ApplicationService implements ProductAdapter
     }
 
     @Override
-    public Mono<Product> save(ProductDto document) {
-        return repository.save(new ProductWrapper().toDocument(document));
+    public Mono<ProductDto> save(ProductDto document) {
+        return repository.save(new ProductWrapper().toDocument(document))
+            .map(product -> {
+                return new ProductWrapper().toDto(product);
+            });
     }
 
     @Override
-    public Mono<Product> find(String id) {
-        return repository.find(id);
+    public Mono<ProductDto> find(String id) {
+        return repository.find(id)
+            .map(product -> new ProductWrapper().toDto(product));
     }
 
     @Override
@@ -52,7 +55,8 @@ public class ProductService extends ApplicationService implements ProductAdapter
     }
 
     @Override
-    public Flux<Product> find(ProductDto param, int limit, int offset) {
-        return repository.find(new ProductWrapper().toParam(param), limit, offset);
+    public Flux<ProductDto> find(ProductDto param, int limit, int offset) {
+        return repository.find(new ProductWrapper().toParam(param), limit, offset)
+            .map(product -> new ProductWrapper().toDto(product));
     }
 }

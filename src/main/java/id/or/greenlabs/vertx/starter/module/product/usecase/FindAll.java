@@ -1,7 +1,6 @@
 package id.or.greenlabs.vertx.starter.module.product.usecase;
 
 import id.or.greenlabs.vertx.starter.assembler.dto.ProductDto;
-import id.or.greenlabs.vertx.starter.document.Product;
 import reactor.core.publisher.Flux;
 
 /**
@@ -10,5 +9,5 @@ import reactor.core.publisher.Flux;
  */
 public interface FindAll {
 
-    Flux<Product> execute(ProductDto param, int limit, int offset);
+    Flux<ProductDto> execute(ProductDto param, int limit, int offset);
 }

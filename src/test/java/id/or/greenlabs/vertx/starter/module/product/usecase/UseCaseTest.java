@@ -1,5 +1,6 @@
 package id.or.greenlabs.vertx.starter.module.product.usecase;
 
+import id.or.greenlabs.vertx.starter.assembler.dto.ProductDto;
 import id.or.greenlabs.vertx.starter.common.DefaultException;
 import id.or.greenlabs.vertx.starter.common.StatusCode;
 import id.or.greenlabs.vertx.starter.document.Product;
@@ -24,7 +25,7 @@ class UseCaseTest extends BaseTest {
 
     private FindAll findAll;
 
-    private static Product product;
+    private static ProductDto product;
 
     @BeforeAll
     @Override
@@ -54,7 +55,7 @@ class UseCaseTest extends BaseTest {
     @Order(2)
     @Test
     void findById(VertxTestContext context) {
-        findById.execute(product.getId().toHexString())
+        findById.execute(product.getId())
             .switchIfEmpty(Mono.error(new DefaultException(StatusCode.OPERATION_FAILED)))
             .flatMap(object -> {
                 return Mono.just(object);

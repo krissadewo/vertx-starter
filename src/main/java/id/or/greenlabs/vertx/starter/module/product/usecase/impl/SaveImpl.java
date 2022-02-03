@@ -18,7 +18,7 @@ public class SaveImpl implements Save {
     private ProductAdapter adapter;
 
     @Override
-    public Mono<Product> execute(ProductDto dto) {
+    public Mono<ProductDto> execute(ProductDto dto) {
         return adapter.save(dto);
     }
 }

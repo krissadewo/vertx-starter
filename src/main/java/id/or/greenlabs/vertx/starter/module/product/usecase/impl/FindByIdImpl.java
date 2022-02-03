@@ -1,5 +1,6 @@
 package id.or.greenlabs.vertx.starter.module.product.usecase.impl;
 
+import id.or.greenlabs.vertx.starter.assembler.dto.ProductDto;
 import id.or.greenlabs.vertx.starter.document.Product;
 import id.or.greenlabs.vertx.starter.module.product.port.ProductAdapter;
 import id.or.greenlabs.vertx.starter.module.product.usecase.FindById;
@@ -17,7 +18,7 @@ public class FindByIdImpl implements FindById {
     private ProductAdapter adapter;
 
     @Override
-    public Mono<Product> execute(String id) {
+    public Mono<ProductDto> execute(String id) {
         return adapter.find(id);
     }
 }

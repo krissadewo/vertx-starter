@@ -11,11 +11,11 @@ import reactor.core.publisher.Mono;
  */
 public interface ProductAdapter {
 
-    Mono<Product> save(ProductDto dto);
+    Mono<ProductDto> save(ProductDto dto);
 
-    Mono<Product> find(String id);
+    Mono<ProductDto> find(String id);
 
     Mono<String> delete(String id);
 
-    Flux<Product> find(ProductDto param, int limit, int offset);
+    Flux<ProductDto> find(ProductDto param, int limit, int offset);
 }

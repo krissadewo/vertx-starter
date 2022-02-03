@@ -1,6 +1,6 @@
 package id.or.greenlabs.vertx.starter.module.product.usecase;
 
-import id.or.greenlabs.vertx.starter.document.Product;
+import id.or.greenlabs.vertx.starter.assembler.dto.ProductDto;
 import reactor.core.publisher.Mono;
 
 /**
@@ -9,5 +9,5 @@ import reactor.core.publisher.Mono;
  */
 public interface FindById {
 
-    Mono<Product> execute(String id);
+    Mono<ProductDto> execute(String id);
 }

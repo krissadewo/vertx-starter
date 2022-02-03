@@ -10,5 +10,5 @@ import reactor.core.publisher.Mono;
  */
 public interface Save {
 
-    Mono<Product> execute(ProductDto dto);
+    Mono<ProductDto> execute(ProductDto dto);
 }

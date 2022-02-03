@@ -18,7 +18,7 @@ public class FindAllImpl implements FindAll {
     private ProductAdapter adapter;
 
     @Override
-    public Flux<Product> execute(ProductDto param, int limit, int offset) {
+    public Flux<ProductDto> execute(ProductDto param, int limit, int offset) {
         return adapter.find(param, limit, offset);
     }
 }
