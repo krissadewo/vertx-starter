@@ -5,10 +5,10 @@ import id.or.greenlabs.vertx.starter.module.product.port.ProductAdapter;
 import id.or.greenlabs.vertx.starter.module.product.repository.ProductRepository;
 import id.or.greenlabs.vertx.starter.module.product.repository.ProductRepositoryImpl;
 import id.or.greenlabs.vertx.starter.module.product.service.ProductService;
-import id.or.greenlabs.vertx.starter.module.product.usecase.FindAll;
+import id.or.greenlabs.vertx.starter.module.product.usecase.Find;
 import id.or.greenlabs.vertx.starter.module.product.usecase.FindById;
 import id.or.greenlabs.vertx.starter.module.product.usecase.Save;
-import id.or.greenlabs.vertx.starter.module.product.usecase.impl.FindAllImpl;
+import id.or.greenlabs.vertx.starter.module.product.usecase.impl.FindImpl;
 import id.or.greenlabs.vertx.starter.module.product.usecase.impl.FindByIdImpl;
 import id.or.greenlabs.vertx.starter.module.product.usecase.impl.SaveImpl;
 
@@ -24,6 +24,6 @@ public class ProductModule extends AbstractModule {
         bind(ProductAdapter.class).to(ProductService.class);
         bind(Save.class).to(SaveImpl.class);
         bind(FindById.class).to(FindByIdImpl.class);
-        bind(FindAll.class).to(FindAllImpl.class);
+        bind(Find.class).to(FindImpl.class);
     }
 }

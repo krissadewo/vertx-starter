@@ -7,7 +7,7 @@ import reactor.core.publisher.Flux;
  * @author krissadewo
  * @date 1/31/22 3:03 PM
  */
-public interface FindAll {
+public interface Find {
 
     Flux<ProductDto> execute(ProductDto param, int limit, int offset);
 }

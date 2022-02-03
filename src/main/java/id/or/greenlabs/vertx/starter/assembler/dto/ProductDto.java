@@ -25,4 +25,13 @@ public class ProductDto {
     public ProductDto(CategoryDto category) {
         this.category = category;
     }
+
+    public ProductDto(String id) {
+        this.id = id;
+    }
+
+    public ProductDto(String id, CategoryDto category) {
+        this.id = id;
+        this.category = category;
+    }
 }

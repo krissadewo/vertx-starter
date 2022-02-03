@@ -1,6 +1,5 @@
 package id.or.greenlabs.vertx.starter.assembler.wrapper;
 
-import id.or.greenlabs.vertx.starter.assembler.dto.CategoryDto;
 import id.or.greenlabs.vertx.starter.assembler.dto.ProductDto;
 import id.or.greenlabs.vertx.starter.assembler.generic.Assembler;
 import id.or.greenlabs.vertx.starter.document.Product;
@@ -21,7 +20,10 @@ public class ProductWrapper implements Assembler<ProductDto, Product> {
         dto.setId(entity.getId().toHexString());
         dto.setCode(entity.getCode());
         dto.setName(entity.getName());
-        dto.setCategory(new CategoryDto(entity.getCategory().getId().toHexString()));
+
+        if (entity.getCategory() != null) {
+            dto.setCategory(new CategoryWrapper().toDto(entity.getCategory()));
+        }
 
         return dto;
     }
@@ -58,6 +60,12 @@ public class ProductWrapper implements Assembler<ProductDto, Product> {
 
     @Override
     public Collection<Product> toDocument(Collection<ProductDto> dto) {
-        return null;
+        Collection<Product> dtos = new ArrayList<>();
+
+        dto.forEach(object -> {
+            dtos.add(toDocument(object));
+        });
+
+        return dtos;
     }
 }

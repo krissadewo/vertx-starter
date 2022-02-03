@@ -3,7 +3,7 @@ package id.or.greenlabs.vertx.starter.module.product.usecase;
 import id.or.greenlabs.vertx.starter.assembler.dto.ProductDto;
 import id.or.greenlabs.vertx.starter.common.DefaultException;
 import id.or.greenlabs.vertx.starter.common.StatusCode;
-import id.or.greenlabs.vertx.starter.module.product.usecase.impl.FindAllImpl;
+import id.or.greenlabs.vertx.starter.module.product.usecase.impl.FindImpl;
 import id.or.greenlabs.vertx.starter.module.product.usecase.impl.FindByIdImpl;
 import id.or.greenlabs.vertx.starter.module.product.usecase.impl.SaveImpl;
 import io.vertx.junit5.VertxTestContext;
@@ -22,7 +22,7 @@ class ProductUseCaseTest extends BaseTest {
 
     private FindById findById;
 
-    private FindAll findAll;
+    private Find find;
 
     private static ProductDto product;
 
@@ -31,7 +31,7 @@ class ProductUseCaseTest extends BaseTest {
     protected void initInjector() {
         save = injector.getProvider(SaveImpl.class).get();
         findById = injector.getProvider(FindByIdImpl.class).get();
-        findAll = injector.getProvider(FindAllImpl.class).get();
+        find = injector.getProvider(FindImpl.class).get();
     }
 
     @Order(1)
@@ -69,7 +69,7 @@ class ProductUseCaseTest extends BaseTest {
     @Order(3)
     @Test
     void findAll(VertxTestContext context) {
-        findAll.execute(dummyData.productDto(),10,0)
+        find.execute(dummyData.productDto(),10,0)
             .switchIfEmpty(Mono.error(new DefaultException(StatusCode.OPERATION_FAILED)))
             .flatMap(object -> {
                 return Mono.just(object);
