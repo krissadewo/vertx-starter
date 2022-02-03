@@ -23,15 +23,9 @@ public abstract class BaseTest extends AbstractGenericTest {
     protected DummyData dummyData = new DummyData();
 
     protected void prepareBuilder(Vertx vertx) {
-        MongoConfig mongoConfig = MongoConfig.builder()
-            .vertx(vertx)
-            .env(environmentConfig.getEnv())
-            .build();
-
         injector = Guice.createInjector(
             new VertxModule(vertx, Router.router(vertx), environmentConfig.getEnv()),
             new MongoModule(mongoConfig),
-            new CategoryModule(),
             new ProductModule()
         );
     }

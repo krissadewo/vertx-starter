@@ -90,7 +90,7 @@ class ProductRepositoryTest extends BaseTest {
 
     @Order(3)
     @Test
-    void testFind(VertxTestContext context) {
+    void findById(VertxTestContext context) {
         productRepository.find(product.getId().toHexString())
             .switchIfEmpty(Mono.error(new DefaultException(StatusCode.DATA_NOT_FOUND)))
             .flatMap(Mono::just)

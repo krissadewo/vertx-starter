@@ -1,17 +1,14 @@
 package id.or.greenlabs.vertx.starter;
 
-import com.google.inject.Injector;
-import id.or.greenlabs.vertx.starter.common.DummyData;
+import id.or.greenlabs.vertx.starter.common.subscribe.SingleSubscriber;
 import id.or.greenlabs.vertx.starter.config.EnvironmentConfig;
+import id.or.greenlabs.vertx.starter.config.MongoConfig;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;
 import org.apache.commons.io.IOUtils;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.io.FileReader;
@@ -26,13 +23,11 @@ import java.io.IOException;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public abstract class AbstractGenericTest {
 
-    protected Injector injector;
-
     protected JsonObject config;
 
-    protected EnvironmentConfig environmentConfig;
+    protected MongoConfig mongoConfig;
 
-    protected DummyData dummyData = new DummyData();
+    protected EnvironmentConfig environmentConfig;
 
     @BeforeAll
     void init(Vertx vertx, VertxTestContext context) throws IOException {
@@ -43,6 +38,11 @@ public abstract class AbstractGenericTest {
             .config(config)
             .build();
 
+        mongoConfig = MongoConfig.builder()
+            .vertx(vertx)
+            .env(environmentConfig.getEnv())
+            .build();
+
         prepareBuilder(vertx);
 
         context.completeNow();
@@ -51,4 +51,21 @@ public abstract class AbstractGenericTest {
     protected abstract void initInjector();
 
     protected abstract void prepareBuilder(Vertx vertx);
+
+    @Order(-99)
+    @Test
+    public void setupCollection(final VertxTestContext context) {
+        mongoConfig.getDatabase().drop()
+            .subscribe(new SingleSubscriber<>() {
+                @Override
+                public void onSuccess(Void result) {
+                    context.completeNow();
+                }
+
+                @Override
+                public void onFailure(Throwable throwable) {
+
+                }
+            });
+    }
 }
