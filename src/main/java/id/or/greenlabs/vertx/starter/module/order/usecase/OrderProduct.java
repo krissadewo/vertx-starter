@@ -11,5 +11,5 @@ import java.util.List;
  */
 public interface OrderProduct {
 
-    Mono<Integer> execute(List<OrderDto> dtos);
+    Mono<Object> execute(List<OrderDto> dtos);
 }

@@ -1,6 +1,7 @@
 package id.or.greenlabs.vertx.starter.module.order.usecase.impl;
 
 import id.or.greenlabs.vertx.starter.assembler.dto.OrderDto;
+import id.or.greenlabs.vertx.starter.module.order.port.KafkaAdapter;
 import id.or.greenlabs.vertx.starter.module.order.port.OrderAdapter;
 import id.or.greenlabs.vertx.starter.module.order.usecase.OrderProduct;
 import reactor.core.publisher.Mono;
@@ -15,10 +16,20 @@ import java.util.List;
 public class OrderProductImpl implements OrderProduct {
 
     @Inject
-    private OrderAdapter adapter;
+    private OrderAdapter orderAdapter;
+
+    @Inject
+    private KafkaAdapter kafkaAdapter;
 
     @Override
-    public Mono<Integer> execute(List<OrderDto> dtos) {
-        return adapter.save(dtos);
+    public Mono<Object> execute(List<OrderDto> dtos) {
+        return orderAdapter.save(dtos)
+            .flatMap(integer -> {
+                if (integer > 0) {
+                    return kafkaAdapter.send(dtos);
+                }
+
+                return Mono.empty();
+            });
     }
 }

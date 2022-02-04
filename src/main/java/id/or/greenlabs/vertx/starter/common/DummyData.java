@@ -3,7 +3,6 @@ package id.or.greenlabs.vertx.starter.common;
 import id.or.greenlabs.vertx.starter.assembler.dto.CategoryDto;
 import id.or.greenlabs.vertx.starter.assembler.dto.OrderDto;
 import id.or.greenlabs.vertx.starter.assembler.dto.ProductDto;
-import id.or.greenlabs.vertx.starter.assembler.wrapper.ProductWrapper;
 import id.or.greenlabs.vertx.starter.document.Category;
 import id.or.greenlabs.vertx.starter.document.Order;
 import id.or.greenlabs.vertx.starter.document.Product;
@@ -60,7 +59,7 @@ public class DummyData {
         for (int i = 0; i < 5; i++) {
             OrderDto dto = new OrderDto();
             dto.setCode(UUID.randomUUID().toString());
-            dto.setProduct(new ProductDto(new ObjectId().toHexString(),new CategoryDto(new ObjectId().toHexString())));
+            dto.setProduct(new ProductDto(new ObjectId().toHexString(), new CategoryDto(new ObjectId().toHexString())));
             dto.setQty(i + 2);
             dto.setType(Order.Type.SELL);
 

@@ -1,6 +1,7 @@
 package id.or.greenlabs.vertx.starter;
 
 import id.or.greenlabs.vertx.starter.common.DummyData;
+import id.or.greenlabs.vertx.starter.common.GenericCodec;
 import id.or.greenlabs.vertx.starter.common.subscribe.SingleSubscriber;
 import id.or.greenlabs.vertx.starter.config.EnvironmentConfig;
 import id.or.greenlabs.vertx.starter.config.MongoConfig;
@@ -45,6 +46,8 @@ public abstract class AbstractGenericTest {
             .vertx(vertx)
             .env(environmentConfig.getEnv())
             .build();
+
+        vertx.eventBus().registerCodec(new GenericCodec());
 
         prepareBuilder(vertx);
 
