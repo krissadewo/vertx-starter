@@ -8,8 +8,8 @@ import id.or.greenlabs.vertx.starter.module.product.service.ProductService;
 import id.or.greenlabs.vertx.starter.module.product.usecase.Find;
 import id.or.greenlabs.vertx.starter.module.product.usecase.FindById;
 import id.or.greenlabs.vertx.starter.module.product.usecase.Save;
-import id.or.greenlabs.vertx.starter.module.product.usecase.impl.FindImpl;
 import id.or.greenlabs.vertx.starter.module.product.usecase.impl.FindByIdImpl;
+import id.or.greenlabs.vertx.starter.module.product.usecase.impl.FindImpl;
 import id.or.greenlabs.vertx.starter.module.product.usecase.impl.SaveImpl;
 
 /**

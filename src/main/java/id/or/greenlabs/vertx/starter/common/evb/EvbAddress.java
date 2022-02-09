@@ -1,6 +1,7 @@
 package id.or.greenlabs.vertx.starter.common.evb;
 
 import id.or.greenlabs.vertx.starter.module.kafka.service.KafkaService;
+import id.or.greenlabs.vertx.starter.module.kafka.service.StockService;
 
 /**
  * @author krissadewo
@@ -9,4 +10,5 @@ import id.or.greenlabs.vertx.starter.module.kafka.service.KafkaService;
 public interface EvbAddress {
 
     String KAFKA_SERVICE = KafkaService.class.getSimpleName();
+    String STOCK_SERVICE = StockService.class.getSimpleName();
 }

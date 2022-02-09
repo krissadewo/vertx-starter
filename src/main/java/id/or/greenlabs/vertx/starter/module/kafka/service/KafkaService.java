@@ -27,20 +27,20 @@ public class KafkaService extends ApplicationService implements KafkaAdapter {
 
     private final Logger logger = LoggerFactory.getLogger(KafkaService.class);
 
-    protected KafkaSender<String, Object> producer;
+    private KafkaSender<String, Object> producer;
 
     @Inject
-    public KafkaService(@Named("vertx") Vertx vertx) {
+    public KafkaService(@Named("vertx") Vertx vertx, @Named("kafkaProducerConfig") KafkaProducerConfig kafkaProducerConfig) {
         super(vertx);
 
-        producer = context.get(KafkaProducerConfig.class).getProducer();
+        this.producer = kafkaProducerConfig.getProducer();
     }
 
     @Override
     public Mono<String> send(List<OrderDto> dtos) {
         String topic = "order";
 
-        ProducerRecord<String, Object> record = new ProducerRecord<>(topic, Json.encode(List.of(dtos)));
+        ProducerRecord<String, Object> record = new ProducerRecord<>(topic, Json.encodePrettily(dtos));
 
         return producer
             .send(Mono.just(SenderRecord.create(record, null)))

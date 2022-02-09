@@ -1,4 +1,4 @@
-package id.or.greenlabs.vertx.starter.common;
+package id.or.greenlabs.vertx.starter.common.codec;
 
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.eventbus.MessageCodec;

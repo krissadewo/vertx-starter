@@ -1,7 +1,8 @@
 package id.or.greenlabs.vertx.starter;
 
 import id.or.greenlabs.vertx.starter.common.DummyData;
-import id.or.greenlabs.vertx.starter.common.GenericCodec;
+import id.or.greenlabs.vertx.starter.common.codec.GenericCodec;
+import id.or.greenlabs.vertx.starter.common.codec.RequestParamCodec;
 import id.or.greenlabs.vertx.starter.common.subscribe.SingleSubscriber;
 import id.or.greenlabs.vertx.starter.config.EnvironmentConfig;
 import id.or.greenlabs.vertx.starter.config.MongoConfig;
@@ -48,13 +49,14 @@ public abstract class AbstractGenericTest {
             .build();
 
         vertx.eventBus().registerCodec(new GenericCodec());
+        vertx.eventBus().registerCodec(new RequestParamCodec());
 
         prepareBuilder(vertx);
 
         context.completeNow();
     }
 
-    protected abstract void initInjector();
+    protected abstract void initInjector(VertxTestContext context);
 
     protected abstract void prepareBuilder(Vertx vertx);
 

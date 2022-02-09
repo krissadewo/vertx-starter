@@ -61,12 +61,12 @@ public class OrderWrapper implements Assembler<OrderDto, Order> {
 
     @Override
     public Collection<Order> toDocument(Collection<OrderDto> dto) {
-        Collection<Order> dtos = new ArrayList<>();
+        Collection<Order> documents = new ArrayList<>();
 
         dto.forEach(object -> {
-            dtos.add(toDocument(object));
+            documents.add(toDocument(object));
         });
 
-        return dtos;
+        return documents;
     }
 }

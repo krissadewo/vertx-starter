@@ -21,7 +21,7 @@ class CategoryRepositoryTest extends BaseTest {
 
     @Override
     @BeforeAll
-    protected void initInjector() {
+    protected void initInjector(VertxTestContext context) {
         categoryRepository = injector.getProvider(CategoryRepositoryImpl.class).get();
     }
 

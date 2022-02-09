@@ -28,7 +28,7 @@ class ProductUseCaseTest extends BaseTest {
 
     @BeforeAll
     @Override
-    protected void initInjector() {
+    protected void initInjector(VertxTestContext context) {
         save = injector.getProvider(SaveImpl.class).get();
         findById = injector.getProvider(FindByIdImpl.class).get();
         find = injector.getProvider(FindImpl.class).get();

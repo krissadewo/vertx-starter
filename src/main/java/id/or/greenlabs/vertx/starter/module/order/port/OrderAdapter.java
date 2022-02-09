@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface OrderAdapter {
 
-    Mono<Integer> save(List<OrderDto> dtos);
+    Mono<List<OrderDto>> save(List<OrderDto> dtos);
 
     Flux<OrderDto> find(OrderDto param, int limit, int offset);
 }

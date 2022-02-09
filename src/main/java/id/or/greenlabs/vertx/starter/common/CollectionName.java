@@ -9,4 +9,5 @@ public interface CollectionName {
     String PRODUCT = "product";
     String CATEGORY = "category";
     String ORDER = "order";
+    String STOCK = "stock";
 }

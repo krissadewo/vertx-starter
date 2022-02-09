@@ -29,7 +29,7 @@ class ProductRepositoryTest extends BaseTest {
 
     @Override
     @BeforeAll
-    protected void initInjector() {
+    protected void initInjector(VertxTestContext context) {
         productRepository = injector.getProvider(ProductRepositoryImpl.class).get();
         categoryRepository = injector.getProvider(CategoryRepositoryImpl.class).get();
     }

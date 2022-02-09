@@ -17,4 +17,12 @@ public class LookupOperationTemplate {
     public static Bson lookupProductFromOrder() {
         return Aggregates.lookup(CollectionName.PRODUCT, "productId", "_id", CollectionName.PRODUCT);
     }
+
+    public static Bson lookupOrderFromStock() {
+        return Aggregates.lookup(CollectionName.ORDER, "orderId", "_id", CollectionName.ORDER);
+    }
+
+    public static Bson lookupProductFromStock() {
+        return Aggregates.lookup(CollectionName.PRODUCT, "productId", "_id", CollectionName.PRODUCT);
+    }
 }

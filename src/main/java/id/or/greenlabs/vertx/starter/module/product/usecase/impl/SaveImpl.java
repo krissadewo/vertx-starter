@@ -1,7 +1,6 @@
 package id.or.greenlabs.vertx.starter.module.product.usecase.impl;
 
 import id.or.greenlabs.vertx.starter.assembler.dto.ProductDto;
-import id.or.greenlabs.vertx.starter.document.Product;
 import id.or.greenlabs.vertx.starter.module.product.port.ProductAdapter;
 import id.or.greenlabs.vertx.starter.module.product.usecase.Save;
 import reactor.core.publisher.Mono;

@@ -1,4 +1,4 @@
-package id.or.greenlabs.vertx.starter.module.order.repository;
+package id.or.greenlabs.vertx.starter.module.stock.repository;
 
 import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Field;
@@ -6,7 +6,7 @@ import id.or.greenlabs.vertx.starter.common.CollectionName;
 import id.or.greenlabs.vertx.starter.common.DefaultException;
 import id.or.greenlabs.vertx.starter.common.StatusCode;
 import id.or.greenlabs.vertx.starter.config.MongoConfig;
-import id.or.greenlabs.vertx.starter.document.Order;
+import id.or.greenlabs.vertx.starter.document.Stock;
 import id.or.greenlabs.vertx.starter.repository.GenericRepository;
 import id.or.greenlabs.vertx.starter.repository.LookupOperationTemplate;
 import org.bson.Document;
@@ -20,18 +20,18 @@ import java.util.List;
 
 /**
  * @author krissadewo
- * @date 2/3/22 10:47 AM
+ * @date 2/4/22 1:33 PM
  */
-public class OrderRepositoryImpl extends GenericRepository implements OrderRepository {
+public class StockRepositoryImpl extends GenericRepository implements StockRepository {
 
     @Inject
-    public OrderRepositoryImpl(@Named("mongoConfig") MongoConfig mongoConfig) {
+    public StockRepositoryImpl(@Named("mongoConfig") MongoConfig mongoConfig) {
         super(mongoConfig);
     }
 
     @Override
-    public Mono<List<Order>> save(List<Order> documents) {
-        return Mono.from(mongoConfig.getOrderCollection().insertMany(documents))
+    public Mono<List<Stock>> save(List<Stock> documents) {
+        return Mono.from(mongoConfig.getStockCollection().insertMany(documents))
             .flatMap(insertManyResult -> {
                 if (insertManyResult.wasAcknowledged() && insertManyResult.getInsertedIds().size() == documents.size()) {
                     return Mono.just(documents);
@@ -42,13 +42,15 @@ public class OrderRepositoryImpl extends GenericRepository implements OrderRepos
     }
 
     @Override
-    public Flux<Order> find(Order param, int limit, int offset) {
+    public Flux<Stock> find(Stock stock, int limit, int offset) {
         return Flux.from(
-            mongoConfig.getOrderCollection()
+            mongoConfig.getStockCollection()
                 .aggregate(
                     Arrays.asList(
-                        LookupOperationTemplate.lookupProductFromOrder(),
+                        LookupOperationTemplate.lookupProductFromStock(),
+                        LookupOperationTemplate.lookupOrderFromStock(),
                         Aggregates.addFields(new Field<Object>(CollectionName.PRODUCT, new Document("$arrayElemAt", Arrays.asList("$" + CollectionName.PRODUCT, 0)))),
+                        Aggregates.addFields(new Field<Object>(CollectionName.ORDER, new Document("$arrayElemAt", Arrays.asList("$" + CollectionName.ORDER, 0)))),
                         Aggregates.skip(offset),
                         Aggregates.limit(limit))
                 )

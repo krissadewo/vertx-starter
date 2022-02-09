@@ -6,6 +6,7 @@ import id.or.greenlabs.vertx.starter.assembler.dto.ProductDto;
 import id.or.greenlabs.vertx.starter.document.Category;
 import id.or.greenlabs.vertx.starter.document.Order;
 import id.or.greenlabs.vertx.starter.document.Product;
+import id.or.greenlabs.vertx.starter.document.Stock;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
@@ -69,5 +70,19 @@ public class DummyData {
         return orders;
     }
 
+    public List<Stock> stocks(List<Order> orders) {
+        List<Stock> stocks = new ArrayList<>();
+
+        orders.forEach(order -> {
+            Stock stock = new Stock();
+            stock.setOrderId(order.getId());
+            stock.setProductId(order.getProductId());
+            stock.setQty(order.getQty());
+
+            stocks.add(stock);
+        });
+
+        return stocks;
+    }
 
 }

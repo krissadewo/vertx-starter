@@ -24,9 +24,9 @@ public class OrderProductImpl implements OrderProduct {
     @Override
     public Mono<Object> execute(List<OrderDto> dtos) {
         return orderAdapter.save(dtos)
-            .flatMap(integer -> {
-                if (integer > 0) {
-                    return kafkaAdapter.send(dtos);
+            .flatMap(result -> {
+                if (result.size() > 0) {
+                    return kafkaAdapter.send(result);
                 }
 
                 return Mono.empty();

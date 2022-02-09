@@ -7,4 +7,5 @@ package id.or.greenlabs.vertx.starter.common.evb;
 public interface EvbCommand {
 
     String SEND_ORDER = "send-order";
+    String UPDATE_STOCK = "update-stock";
 }

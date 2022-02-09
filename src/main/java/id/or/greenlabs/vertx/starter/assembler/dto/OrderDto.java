@@ -4,13 +4,15 @@ import id.or.greenlabs.vertx.starter.document.Order;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @author krissadewo
  * @date 2/3/22 5:33 PM
  */
 @Data
 @NoArgsConstructor
-public class OrderDto {
+public class OrderDto implements Serializable {
 
     private String id;
 

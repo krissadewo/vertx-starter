@@ -2,7 +2,6 @@ package id.or.greenlabs.vertx.starter.module.order.service;
 
 import id.or.greenlabs.vertx.starter.assembler.dto.OrderDto;
 import id.or.greenlabs.vertx.starter.assembler.wrapper.OrderWrapper;
-import id.or.greenlabs.vertx.starter.document.Order;
 import id.or.greenlabs.vertx.starter.module.order.port.OrderAdapter;
 import id.or.greenlabs.vertx.starter.module.order.repository.OrderRepository;
 import id.or.greenlabs.vertx.starter.service.ApplicationService;
@@ -12,6 +11,7 @@ import reactor.core.publisher.Mono;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,10 +30,10 @@ public class OrderService extends ApplicationService implements OrderAdapter {
     }
 
     @Override
-    public Mono<Integer> save(List<OrderDto> dtos) {
-        return repository.save((List<Order>) new OrderWrapper().toDocument(dtos))
-            .flatMap(integer -> {
-                return Mono.just(integer);
+    public Mono<List<OrderDto>> save(List<OrderDto> dtos) {
+        return repository.save(new ArrayList<>(new OrderWrapper().toDocument(dtos)))
+            .map(orders -> {
+                return new ArrayList<>(new OrderWrapper().toDto(orders));
             });
     }
 

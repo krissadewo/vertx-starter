@@ -1,8 +1,9 @@
 package id.or.greenlabs.vertx.starter.assembler.dto;
 
-import id.or.greenlabs.vertx.starter.document.Category;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * @author krissadewo
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-public class ProductDto {
+public class ProductDto implements Serializable {
 
     private String id;
 

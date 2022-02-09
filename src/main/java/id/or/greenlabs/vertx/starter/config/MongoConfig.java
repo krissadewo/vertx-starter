@@ -13,6 +13,7 @@ import id.or.greenlabs.vertx.starter.context.ShareableContext;
 import id.or.greenlabs.vertx.starter.document.Category;
 import id.or.greenlabs.vertx.starter.document.Order;
 import id.or.greenlabs.vertx.starter.document.Product;
+import id.or.greenlabs.vertx.starter.document.Stock;
 import io.vertx.core.Vertx;
 import lombok.Builder;
 import lombok.Getter;
@@ -81,6 +82,10 @@ public class MongoConfig extends ShareableContext<MongoConfig> {
 
     public MongoCollection<Order> getOrderCollection() {
         return database.getCollection(CollectionName.ORDER, Order.class);
+    }
+
+    public MongoCollection<Stock> getStockCollection() {
+        return database.getCollection(CollectionName.STOCK, Stock.class);
     }
 
     private void registerProductIndex() {

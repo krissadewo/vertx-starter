@@ -2,7 +2,7 @@ package id.or.greenlabs.vertx.starter.module.order.service;
 
 import com.google.inject.Inject;
 import id.or.greenlabs.vertx.starter.assembler.dto.OrderDto;
-import id.or.greenlabs.vertx.starter.common.GenericCodec;
+import id.or.greenlabs.vertx.starter.common.codec.GenericCodec;
 import id.or.greenlabs.vertx.starter.common.evb.EvbAddress;
 import id.or.greenlabs.vertx.starter.common.evb.EvbCommand;
 import id.or.greenlabs.vertx.starter.common.evb.Operation;

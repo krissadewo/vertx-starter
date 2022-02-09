@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface OrderRepository {
 
-    Mono<Integer> save(List<Order> document);
+    Mono<List<Order>> save(List<Order> document);
 
     Flux<Order> find(Order param, int limit, int offset);
 }

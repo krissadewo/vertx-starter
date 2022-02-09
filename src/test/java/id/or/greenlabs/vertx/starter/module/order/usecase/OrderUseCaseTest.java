@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author krissadewo
  * @date 2/3/22 7:04 PM
@@ -23,9 +25,16 @@ class OrderUseCaseTest extends BaseTest {
 
     @BeforeAll
     @Override
-    protected void initInjector() {
+    protected void initInjector(VertxTestContext context) {
         orderProduct = injector.getProvider(OrderProductImpl.class).get();
         find = injector.getProvider(FindImpl.class).get();
+
+        try {
+            context.awaitCompletion(2, TimeUnit.SECONDS);
+            context.completeNow();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Order(0)
@@ -57,4 +66,5 @@ class OrderUseCaseTest extends BaseTest {
             .doOnError(context::failNow)
             .subscribe();
     }
+
 }

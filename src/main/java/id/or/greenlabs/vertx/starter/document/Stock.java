@@ -18,12 +18,15 @@ public class Stock implements Serializable {
     @BsonId
     private ObjectId id;
 
-    @BsonId
     private ObjectId productId;
 
     private Product product;
 
+    private ObjectId orderId;
+
+    private Order order;
+
     private int qty;
 
-    private long createdTime;
+    private long createdTime = System.currentTimeMillis();
 }
