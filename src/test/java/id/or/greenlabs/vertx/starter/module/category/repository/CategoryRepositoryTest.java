@@ -4,7 +4,6 @@ import id.or.greenlabs.vertx.starter.common.DefaultException;
 import id.or.greenlabs.vertx.starter.common.StatusCode;
 import id.or.greenlabs.vertx.starter.document.Category;
 import io.vertx.junit5.VertxTestContext;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
@@ -20,7 +19,6 @@ class CategoryRepositoryTest extends BaseTest {
     private static Category category;
 
     @Override
-    @BeforeAll
     protected void initInjector(VertxTestContext context) {
         categoryRepository = injector.getProvider(CategoryRepositoryImpl.class).get();
     }

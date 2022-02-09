@@ -7,7 +7,6 @@ import id.or.greenlabs.vertx.starter.document.Product;
 import id.or.greenlabs.vertx.starter.module.category.repository.CategoryRepository;
 import id.or.greenlabs.vertx.starter.module.category.repository.CategoryRepositoryImpl;
 import io.vertx.junit5.VertxTestContext;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
@@ -28,7 +27,6 @@ class ProductRepositoryTest extends BaseTest {
     private static Category category;
 
     @Override
-    @BeforeAll
     protected void initInjector(VertxTestContext context) {
         productRepository = injector.getProvider(ProductRepositoryImpl.class).get();
         categoryRepository = injector.getProvider(CategoryRepositoryImpl.class).get();
@@ -75,7 +73,7 @@ class ProductRepositoryTest extends BaseTest {
         productRepository.find(new Product(), 10, 0)
             .switchIfEmpty(Mono.error(new DefaultException(StatusCode.DATA_NOT_FOUND)))
             .flatMap(result -> {
-                if(result.getCategory().getId() == null){
+                if (result.getCategory().getId() == null) {
                     return Flux.error(new DefaultException(StatusCode.DATA_NOT_FOUND));
                 }
 
@@ -107,9 +105,9 @@ class ProductRepositoryTest extends BaseTest {
     void delete(VertxTestContext context) {
         productRepository.delete(product.getId().toHexString())
             .switchIfEmpty(Mono.error(new DefaultException(StatusCode.DATA_NOT_FOUND)))
-            .flatMap(result->{
-                if(result.getModifiedCount() > 0){
-                   return Mono.just(StatusCode.OPERATION_SUCCESS);
+            .flatMap(result -> {
+                if (result.getModifiedCount() > 0) {
+                    return Mono.just(StatusCode.OPERATION_SUCCESS);
                 }
 
                 return Mono.just(new DefaultException(StatusCode.OPERATION_FAILED));

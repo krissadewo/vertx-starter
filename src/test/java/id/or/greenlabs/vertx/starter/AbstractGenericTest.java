@@ -53,6 +53,8 @@ public abstract class AbstractGenericTest {
 
         prepareBuilder(vertx);
 
+        initInjector(context);
+
         context.completeNow();
     }
 

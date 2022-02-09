@@ -7,7 +7,6 @@ import id.or.greenlabs.vertx.starter.document.Product;
 import id.or.greenlabs.vertx.starter.module.product.repository.ProductRepository;
 import id.or.greenlabs.vertx.starter.module.product.repository.ProductRepositoryImpl;
 import io.vertx.junit5.VertxTestContext;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
@@ -30,7 +29,6 @@ class OrderRepositoryTest extends BaseTest {
 
     private static Product product;
 
-    @BeforeAll
     @Override
     protected void initInjector(VertxTestContext context) {
         orderRepository = injector.getProvider(OrderRepositoryImpl.class).get();

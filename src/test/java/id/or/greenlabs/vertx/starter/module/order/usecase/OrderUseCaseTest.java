@@ -6,7 +6,6 @@ import id.or.greenlabs.vertx.starter.common.StatusCode;
 import id.or.greenlabs.vertx.starter.module.order.usecase.impl.FindImpl;
 import id.or.greenlabs.vertx.starter.module.order.usecase.impl.OrderProductImpl;
 import io.vertx.junit5.VertxTestContext;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
@@ -23,7 +22,6 @@ class OrderUseCaseTest extends BaseTest {
 
     private Find find;
 
-    @BeforeAll
     @Override
     protected void initInjector(VertxTestContext context) {
         orderProduct = injector.getProvider(OrderProductImpl.class).get();

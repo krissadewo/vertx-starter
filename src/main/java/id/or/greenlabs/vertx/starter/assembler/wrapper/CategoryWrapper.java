@@ -45,7 +45,6 @@ public class CategoryWrapper implements Assembler<CategoryDto, Category> {
     @Override
     public Category toDocument(CategoryDto dto) {
         Category document = new Category();
-        document.setId(new ObjectId(dto.getId()));
         document.setName(dto.getName());
 
         return document;

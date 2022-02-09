@@ -27,6 +27,13 @@ public class DummyData {
         return category;
     }
 
+    public CategoryDto categoryDto() {
+        CategoryDto dto = new CategoryDto();
+        dto.setName("SUV");
+
+        return dto;
+    }
+
     public Product product(ObjectId categoryId) {
         Product product = new Product();
         product.setName("HRV");
@@ -37,12 +44,12 @@ public class DummyData {
     }
 
     public ProductDto productDto() {
-        ProductDto product = new ProductDto();
-        product.setName("HRV");
-        product.setCode("M001");
-        product.setCategory(new CategoryDto(new ObjectId().toHexString()));
+        ProductDto dto = new ProductDto();
+        dto.setName("HRV");
+        dto.setCode("M001");
+        dto.setCategory(new CategoryDto(new ObjectId().toHexString()));
 
-        return product;
+        return dto;
     }
 
     public List<Order> orders(Product product) {

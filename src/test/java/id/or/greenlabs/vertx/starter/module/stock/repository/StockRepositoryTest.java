@@ -6,7 +6,6 @@ import id.or.greenlabs.vertx.starter.common.StatusCode;
 import id.or.greenlabs.vertx.starter.module.order.repository.OrderRepository;
 import id.or.greenlabs.vertx.starter.module.order.repository.OrderRepositoryImpl;
 import io.vertx.junit5.VertxTestContext;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
@@ -27,7 +26,6 @@ class StockRepositoryTest extends BaseTest {
 
     private static List<id.or.greenlabs.vertx.starter.document.Order> orders;
 
-    @BeforeAll
     @Override
     protected void initInjector(VertxTestContext context) {
         stockRepository = injector.getProvider(StockRepositoryImpl.class).get();

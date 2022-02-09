@@ -26,7 +26,6 @@ class ProductUseCaseTest extends BaseTest {
 
     private static ProductDto product;
 
-    @BeforeAll
     @Override
     protected void initInjector(VertxTestContext context) {
         save = injector.getProvider(SaveImpl.class).get();
