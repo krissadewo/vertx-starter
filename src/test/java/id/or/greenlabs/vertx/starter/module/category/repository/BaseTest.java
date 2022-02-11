@@ -8,6 +8,7 @@ import id.or.greenlabs.vertx.starter.module.category.CategoryModule;
 import id.or.greenlabs.vertx.starter.repository.MongoModule;
 import io.vertx.core.Vertx;
 import io.vertx.ext.web.Router;
+import io.vertx.junit5.VertxTestContext;
 
 /**
  * @author krissadewo
@@ -17,7 +18,7 @@ public abstract class BaseTest extends AbstractGenericTest {
 
     protected Injector injector;
 
-    protected void prepareBuilder(Vertx vertx) {
+    protected void prepareBuilder(Vertx vertx, VertxTestContext testContext) {
         injector = Guice.createInjector(
             new VertxModule(vertx, Router.router(vertx), environmentConfig.getEnv()),
             new MongoModule(mongoConfig),

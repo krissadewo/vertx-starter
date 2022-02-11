@@ -1,11 +1,10 @@
-package id.or.greenlabs.vertx.starter.module.stock.repository;
+package id.or.greenlabs.vertx.starter.module.category.usecase;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import id.or.greenlabs.vertx.starter.AbstractGenericTest;
 import id.or.greenlabs.vertx.starter.module.VertxModule;
-import id.or.greenlabs.vertx.starter.module.order.OrderModule;
-import id.or.greenlabs.vertx.starter.module.stock.StockModule;
+import id.or.greenlabs.vertx.starter.module.category.CategoryModule;
 import id.or.greenlabs.vertx.starter.repository.MongoModule;
 import io.vertx.core.Vertx;
 import io.vertx.ext.web.Router;
@@ -23,8 +22,7 @@ public abstract class BaseTest extends AbstractGenericTest {
         injector = Guice.createInjector(
             new VertxModule(vertx, Router.router(vertx), environmentConfig.getEnv()),
             new MongoModule(mongoConfig),
-            new OrderModule(),
-            new StockModule()
+            new CategoryModule()
         );
     }
 

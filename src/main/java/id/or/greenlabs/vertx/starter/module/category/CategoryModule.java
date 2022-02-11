@@ -1,6 +1,7 @@
 package id.or.greenlabs.vertx.starter.module.category;
 
 import com.google.inject.AbstractModule;
+import id.or.greenlabs.vertx.starter.module.category.api.CategoryApi;
 import id.or.greenlabs.vertx.starter.module.category.port.CategoryAdapter;
 import id.or.greenlabs.vertx.starter.module.category.repository.CategoryRepository;
 import id.or.greenlabs.vertx.starter.module.category.repository.CategoryRepositoryImpl;
@@ -22,5 +23,6 @@ public class CategoryModule extends AbstractModule {
         bind(CategoryAdapter.class).to(CategoryService.class);
         bind(Find.class).to(FindImpl.class);
         bind(Save.class).to(SaveImpl.class);
+        bind(CategoryApi.class).asEagerSingleton();
     }
 }

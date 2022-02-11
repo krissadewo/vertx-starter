@@ -51,7 +51,7 @@ public abstract class AbstractGenericTest {
         vertx.eventBus().registerCodec(new GenericCodec());
         vertx.eventBus().registerCodec(new RequestParamCodec());
 
-        prepareBuilder(vertx);
+        prepareBuilder(vertx, context);
 
         initInjector(context);
 
@@ -60,7 +60,7 @@ public abstract class AbstractGenericTest {
 
     protected abstract void initInjector(VertxTestContext context);
 
-    protected abstract void prepareBuilder(Vertx vertx);
+    protected abstract void prepareBuilder(Vertx vertx, VertxTestContext testContext);
 
     @Order(-99)
     @Test

@@ -3,6 +3,7 @@ package id.or.greenlabs.vertx.starter.module;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import id.or.greenlabs.vertx.starter.common.Environment;
+import id.or.greenlabs.vertx.starter.config.MongoConfig;
 import io.vertx.core.Vertx;
 import io.vertx.ext.web.Router;
 
@@ -19,6 +20,8 @@ public class VertxModule extends AbstractModule {
     private Router router;
 
     private Environment env;
+
+    private MongoConfig mongoConfig;
 
     public VertxModule(Vertx vertx) {
         this.vertx = vertx;
@@ -40,6 +43,12 @@ public class VertxModule extends AbstractModule {
         this.env = env;
     }
 
+    public VertxModule(Vertx vertx, Router router, MongoConfig mongoConfig) {
+        this.vertx = vertx;
+        this.router = router;
+        this.mongoConfig = mongoConfig;
+    }
+
     @Provides
     @Named("env")
     Environment env() {
@@ -58,4 +67,9 @@ public class VertxModule extends AbstractModule {
         return this.router;
     }
 
+    @Provides
+    @Named("mongoConfig")
+    MongoConfig mongoConfig() {
+        return this.mongoConfig;
+    }
 }
