@@ -55,7 +55,7 @@ public class ProductRepositoryImpl extends GenericRepository implements ProductR
     }
 
     @Override
-    public Flux<Product> find(Product param, int limit, int offset) {
+    public Flux<Product> findBy(Product param, int limit, int offset) {
         return Flux.from(
             mongoConfig.getProductCollection()
                 .aggregate(
@@ -69,7 +69,7 @@ public class ProductRepositoryImpl extends GenericRepository implements ProductR
     }
 
     @Override
-    public Mono<Product> find(String id) {
+    public Mono<Product> findBy(String id) {
         return Mono.from(mongoConfig.getProductCollection()
             .find(Filters.eq("_id", new ObjectId(id)))
         );

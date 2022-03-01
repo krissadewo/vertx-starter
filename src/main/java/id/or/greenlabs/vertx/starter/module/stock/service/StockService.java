@@ -38,8 +38,8 @@ public class StockService extends ApplicationService implements StockAdapter {
     }
 
     @Override
-    public Flux<StockDto> find(StockDto param, int limit, int offset) {
-        return repository.find(new StockWrapper().toParam(param), limit, offset)
+    public Flux<StockDto> findBy(StockDto param, int limit, int offset) {
+        return repository.findBy(new StockWrapper().toParam(param), limit, offset)
             .map(order -> {
                 return new StockWrapper().toDto(order);
             });

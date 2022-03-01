@@ -68,7 +68,7 @@ class StockRepositoryTest extends BaseTest {
     @Order(2)
     @Test
     void find(VertxTestContext context) {
-        stockRepository.find(null, 10, 0)
+        stockRepository.findBy(null, 10, 0)
             .switchIfEmpty(Mono.error(new DefaultException(StatusCode.OPERATION_FAILED)))
             .flatMap(order -> {
                 return Flux.just(order);

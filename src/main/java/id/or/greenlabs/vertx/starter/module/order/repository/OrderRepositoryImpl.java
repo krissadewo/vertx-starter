@@ -42,7 +42,7 @@ public class OrderRepositoryImpl extends GenericRepository implements OrderRepos
     }
 
     @Override
-    public Flux<Order> find(Order param, int limit, int offset) {
+    public Flux<Order> findBy(Order param, int limit, int offset) {
         return Flux.from(
             mongoConfig.getOrderCollection()
                 .aggregate(

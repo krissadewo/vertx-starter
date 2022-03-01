@@ -14,5 +14,5 @@ public interface StockRepository {
 
     Mono<List<Stock>> save(List<Stock> documents);
 
-    Flux<Stock> find(Stock stock, int limit, int offset);
+    Flux<Stock> findBy(Stock stock, int limit, int offset);
 }

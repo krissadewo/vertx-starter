@@ -18,6 +18,6 @@ public class FindImpl implements Find {
 
     @Override
     public Flux<OrderDto> execute(OrderDto dto, int limit, int offset) {
-        return adapter.find(dto, limit, offset);
+        return adapter.findBy(dto, limit, offset);
     }
 }

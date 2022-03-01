@@ -16,5 +16,5 @@ public interface CategoryAdapter {
 
     Mono<CategoryDto> delete(String id);
 
-    Flux<CategoryDto> find(CategoryDto param, int offset, int limit);
+    Flux<CategoryDto> findBy(CategoryDto param, int offset, int limit);
 }

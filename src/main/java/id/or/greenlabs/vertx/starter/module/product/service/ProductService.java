@@ -37,8 +37,8 @@ public class ProductService extends ApplicationService implements ProductAdapter
     }
 
     @Override
-    public Mono<ProductDto> find(String id) {
-        return repository.find(id)
+    public Mono<ProductDto> findBy(String id) {
+        return repository.findBy(id)
             .map(product -> new ProductWrapper().toDto(product));
     }
 
@@ -55,8 +55,8 @@ public class ProductService extends ApplicationService implements ProductAdapter
     }
 
     @Override
-    public Flux<ProductDto> find(ProductDto param, int limit, int offset) {
-        return repository.find(new ProductWrapper().toParam(param), limit, offset)
+    public Flux<ProductDto> findBy(ProductDto param, int limit, int offset) {
+        return repository.findBy(new ProductWrapper().toParam(param), limit, offset)
             .map(product -> new ProductWrapper().toDto(product));
     }
 }

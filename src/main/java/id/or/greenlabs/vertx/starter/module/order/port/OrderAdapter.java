@@ -14,5 +14,5 @@ public interface OrderAdapter {
 
     Mono<List<OrderDto>> save(List<OrderDto> dtos);
 
-    Flux<OrderDto> find(OrderDto param, int limit, int offset);
+    Flux<OrderDto> findBy(OrderDto param, int limit, int offset);
 }

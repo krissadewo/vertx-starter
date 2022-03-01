@@ -14,5 +14,5 @@ public interface StockAdapter {
 
     Mono<List<StockDto>> save(List<StockDto> dtos);
 
-    Flux<StockDto> find(StockDto param, int limit, int offset);
+    Flux<StockDto> findBy(StockDto param, int limit, int offset);
 }

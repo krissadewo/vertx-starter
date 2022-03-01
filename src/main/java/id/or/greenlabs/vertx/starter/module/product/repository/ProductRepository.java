@@ -15,7 +15,7 @@ public interface ProductRepository {
 
     Mono<UpdateResult> delete(String id);
 
-    Flux<Product> find(Product param, int limit, int offset);
+    Flux<Product> findBy(Product param, int limit, int offset);
 
-    Mono<Product> find(String id);
+    Mono<Product> findBy(String id);
 }

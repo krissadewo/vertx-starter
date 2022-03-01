@@ -43,7 +43,7 @@ class CategoryRepositoryTest extends BaseTest {
     @Order(2)
     @Test
     void find(VertxTestContext context) {
-        categoryRepository.find(category.getId().toHexString())
+        categoryRepository.findBy(category.getId().toHexString())
             .switchIfEmpty(Mono.error(new DefaultException(StatusCode.DATA_NOT_FOUND)))
             .flatMap(Mono::just)
             .doFinally(signalType -> {

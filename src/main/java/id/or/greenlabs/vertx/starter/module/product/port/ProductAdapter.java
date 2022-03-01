@@ -12,9 +12,9 @@ public interface ProductAdapter {
 
     Mono<ProductDto> save(ProductDto dto);
 
-    Mono<ProductDto> find(String id);
+    Mono<ProductDto> findBy(String id);
 
     Mono<String> delete(String id);
 
-    Flux<ProductDto> find(ProductDto param, int limit, int offset);
+    Flux<ProductDto> findBy(ProductDto param, int limit, int offset);
 }

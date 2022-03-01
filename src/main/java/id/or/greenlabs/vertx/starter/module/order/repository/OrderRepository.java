@@ -14,5 +14,5 @@ public interface OrderRepository {
 
     Mono<List<Order>> save(List<Order> document);
 
-    Flux<Order> find(Order param, int limit, int offset);
+    Flux<Order> findBy(Order param, int limit, int offset);
 }

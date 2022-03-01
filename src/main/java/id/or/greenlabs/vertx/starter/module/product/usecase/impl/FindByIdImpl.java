@@ -18,6 +18,6 @@ public class FindByIdImpl implements FindById {
 
     @Override
     public Mono<ProductDto> execute(String id) {
-        return adapter.find(id);
+        return adapter.findBy(id);
     }
 }

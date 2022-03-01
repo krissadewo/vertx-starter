@@ -70,7 +70,7 @@ class ProductRepositoryTest extends BaseTest {
     @Order(2)
     @Test
     void find(VertxTestContext context) {
-        productRepository.find(new Product(), 10, 0)
+        productRepository.findBy(new Product(), 10, 0)
             .switchIfEmpty(Mono.error(new DefaultException(StatusCode.DATA_NOT_FOUND)))
             .flatMap(result -> {
                 if (result.getCategory().getId() == null) {
@@ -89,7 +89,7 @@ class ProductRepositoryTest extends BaseTest {
     @Order(3)
     @Test
     void findById(VertxTestContext context) {
-        productRepository.find(product.getId().toHexString())
+        productRepository.findBy(product.getId().toHexString())
             .switchIfEmpty(Mono.error(new DefaultException(StatusCode.DATA_NOT_FOUND)))
             .flatMap(Mono::just)
             .doFinally(signalType -> {

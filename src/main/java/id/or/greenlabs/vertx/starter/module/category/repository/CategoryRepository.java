@@ -12,7 +12,7 @@ public interface CategoryRepository {
 
     Mono<Category> save(Category document);
 
-    Flux<Category> find(Category param, int limit, int offset);
+    Flux<Category> findBy(Category param, int limit, int offset);
 
-    Mono<Category> find(String id);
+    Mono<Category> findBy(String id);
 }

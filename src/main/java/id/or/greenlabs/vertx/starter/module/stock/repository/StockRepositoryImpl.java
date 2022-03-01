@@ -42,7 +42,7 @@ public class StockRepositoryImpl extends GenericRepository implements StockRepos
     }
 
     @Override
-    public Flux<Stock> find(Stock stock, int limit, int offset) {
+    public Flux<Stock> findBy(Stock stock, int limit, int offset) {
         return Flux.from(
             mongoConfig.getStockCollection()
                 .aggregate(

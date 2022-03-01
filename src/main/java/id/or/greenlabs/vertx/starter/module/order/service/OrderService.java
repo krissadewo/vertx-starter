@@ -38,8 +38,8 @@ public class OrderService extends ApplicationService implements OrderAdapter {
     }
 
     @Override
-    public Flux<OrderDto> find(OrderDto param, int limit, int offset) {
-        return repository.find(new OrderWrapper().toParam(param), limit, offset)
+    public Flux<OrderDto> findBy(OrderDto param, int limit, int offset) {
+        return repository.findBy(new OrderWrapper().toParam(param), limit, offset)
             .map(order -> {
                 return new OrderWrapper().toDto(order);
             });

@@ -46,8 +46,8 @@ public class CategoryService extends ApplicationService implements CategoryAdapt
     }
 
     @Override
-    public Flux<CategoryDto> find(CategoryDto param, int offset, int limit) {
-        return categoryRepository.find(new CategoryWrapper().toParam(param), offset, limit)
+    public Flux<CategoryDto> findBy(CategoryDto param, int offset, int limit) {
+        return categoryRepository.findBy(new CategoryWrapper().toParam(param), offset, limit)
             .map(category -> {
                 return new CategoryWrapper().toDto(category);
             });

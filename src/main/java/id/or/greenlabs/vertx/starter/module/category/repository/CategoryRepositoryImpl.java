@@ -39,7 +39,7 @@ public class CategoryRepositoryImpl extends GenericRepository implements Categor
     }
 
     @Override
-    public Flux<Category> find(Category param, int limit, int offset) {
+    public Flux<Category> findBy(Category param, int limit, int offset) {
         return Flux.from(
             mongoConfig.getCategoryCollection()
                 .find()
@@ -54,7 +54,7 @@ public class CategoryRepositoryImpl extends GenericRepository implements Categor
     }
 
     @Override
-    public Mono<Category> find(String id) {
+    public Mono<Category> findBy(String id) {
         return Mono.from(mongoConfig.getCategoryCollection()
             .find(Filters.eq("_id", new ObjectId(id)))
         );
