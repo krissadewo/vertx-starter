@@ -67,7 +67,7 @@ class CategoryApiTest extends AbstractApiTest {
 
         webClient.get("/categories?limit=10&offset=0")
             .as(BodyCodec.json(Object.class))
-            .sendJsonObject(JsonObject.mapFrom(new DummyData().categoryDto()), testContext.succeeding(response -> testContext.verify(() -> {
+            .send(testContext.succeeding(response -> testContext.verify(() -> {
                     JsonObject object = JsonObject.mapFrom(response.body());
 
                     Assertions.assertEquals(object.getString("status"), StatusCode.OPERATION_SUCCESS);
