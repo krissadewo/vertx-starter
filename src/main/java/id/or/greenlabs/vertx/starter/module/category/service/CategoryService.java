@@ -18,7 +18,7 @@ import javax.inject.Named;
  */
 public class CategoryService extends ApplicationService implements CategoryAdapter {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     @Inject
     public CategoryService(@Named("vertx") Vertx vertx, CategoryRepository categoryRepository) {

@@ -45,12 +45,12 @@ public class ProductService extends ApplicationService implements ProductAdapter
     @Override
     public Mono<String> delete(String id) {
         return repository.delete(id)
-            .flatMap(updateResult -> {
+            .map(updateResult -> {
                 if (updateResult.getModifiedCount() > 0) {
-                    return Mono.just(StatusCode.OPERATION_SUCCESS);
+                    return StatusCode.OPERATION_SUCCESS;
                 }
 
-                return Mono.just(StatusCode.OPERATION_FAILED);
+                return StatusCode.OPERATION_FAILED;
             });
     }
 

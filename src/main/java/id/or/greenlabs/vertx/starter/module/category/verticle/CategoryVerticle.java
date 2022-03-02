@@ -6,6 +6,7 @@ import id.or.greenlabs.vertx.starter.config.MongoConfig;
 import id.or.greenlabs.vertx.starter.module.VertxModule;
 import id.or.greenlabs.vertx.starter.module.category.CategoryModule;
 import id.or.greenlabs.vertx.starter.module.category.service.CategoryService;
+import id.or.greenlabs.vertx.starter.repository.MongoModule;
 import io.vertx.ext.web.Router;
 
 /**
@@ -25,6 +26,10 @@ public class CategoryVerticle extends ApplicationVerticle<CategoryService> {
 
     @Override
     protected void buildModule() {
-        Guice.createInjector(new VertxModule(vertx, router, mongoConfig), new CategoryModule());
+        Guice.createInjector(
+            new VertxModule(vertx, router, mongoConfig),
+            new CategoryModule(),
+            new MongoModule(mongoConfig)
+        );
     }
 }

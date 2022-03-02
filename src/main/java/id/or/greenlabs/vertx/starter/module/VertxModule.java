@@ -67,9 +67,4 @@ public class VertxModule extends AbstractModule {
         return this.router;
     }
 
-    @Provides
-    @Named("mongoConfig")
-    MongoConfig mongoConfig() {
-        return this.mongoConfig;
-    }
 }

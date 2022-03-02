@@ -45,7 +45,7 @@ public class KafkaService extends ApplicationService implements KafkaAdapter {
         return producer
             .send(Mono.just(SenderRecord.create(record, null)))
             .singleOrEmpty()
-            .flatMap(result -> {
+            .map(result -> {
                 RecordMetadata metadata = result.recordMetadata();
 
                 dtos.forEach(dto -> {
@@ -54,7 +54,7 @@ public class KafkaService extends ApplicationService implements KafkaAdapter {
                         ", offset=" + metadata.offset());
                 });
 
-                return Mono.just(StatusCode.OPERATION_SUCCESS);
+                return StatusCode.OPERATION_SUCCESS;
             })
             .onErrorReturn(StatusCode.OPERATION_FAILED);
     }
