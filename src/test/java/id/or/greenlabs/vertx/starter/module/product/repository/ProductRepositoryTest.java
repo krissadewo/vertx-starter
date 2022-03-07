@@ -20,7 +20,7 @@ class ProductRepositoryTest extends BaseTest {
 
     private ProductRepository productRepository;
 
-    protected CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
 
     private static Product product;
 

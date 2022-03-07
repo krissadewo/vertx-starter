@@ -18,18 +18,18 @@ import javax.inject.Named;
  */
 public class CategoryService extends ApplicationService implements CategoryAdapter {
 
-    private final CategoryRepository categoryRepository;
+    private final CategoryRepository repository;
 
     @Inject
     public CategoryService(@Named("vertx") Vertx vertx, CategoryRepository categoryRepository) {
         super(vertx);
 
-        this.categoryRepository = categoryRepository;
+        this.repository = categoryRepository;
     }
 
     @Override
     public Mono<CategoryDto> save(CategoryDto categoryDto) {
-        return categoryRepository.save(new CategoryWrapper().toDocument(categoryDto))
+        return repository.save(new CategoryWrapper().toDocument(categoryDto))
             .map(category -> {
                 return new CategoryWrapper().toDto(category);
             });
@@ -47,7 +47,7 @@ public class CategoryService extends ApplicationService implements CategoryAdapt
 
     @Override
     public Flux<CategoryDto> findBy(CategoryDto param, int offset, int limit) {
-        return categoryRepository.findBy(new CategoryWrapper().toParam(param), offset, limit)
+        return repository.findBy(new CategoryWrapper().toParam(param), offset, limit)
             .map(category -> {
                 return new CategoryWrapper().toDto(category);
             });

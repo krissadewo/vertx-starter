@@ -32,16 +32,16 @@ public class StockService extends ApplicationService implements StockAdapter {
     @Override
     public Mono<List<StockDto>> save(List<StockDto> dtos) {
         return repository.save(new ArrayList<>(new StockWrapper().toDocument(dtos)))
-            .map(stocks -> {
-                return new ArrayList<>(new StockWrapper().toDto(stocks));
+            .map(result -> {
+                return new ArrayList<>(new StockWrapper().toDto(result));
             });
     }
 
     @Override
     public Flux<StockDto> findBy(StockDto param, int limit, int offset) {
         return repository.findBy(new StockWrapper().toParam(param), limit, offset)
-            .map(order -> {
-                return new StockWrapper().toDto(order);
+            .map(result -> {
+                return new StockWrapper().toDto(result);
             });
     }
 }

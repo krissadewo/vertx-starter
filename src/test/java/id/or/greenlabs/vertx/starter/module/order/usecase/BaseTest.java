@@ -2,7 +2,7 @@ package id.or.greenlabs.vertx.starter.module.order.usecase;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import id.or.greenlabs.vertx.starter.AbstractGenericTest;
+import id.or.greenlabs.vertx.starter.AbstractCommonTest;
 import id.or.greenlabs.vertx.starter.module.VertxModule;
 import id.or.greenlabs.vertx.starter.module.kafka.KafkaModule;
 import id.or.greenlabs.vertx.starter.module.kafka.config.KafkaConsumerConfig;
@@ -19,7 +19,7 @@ import io.vertx.junit5.VertxTestContext;
  * @author krissadewo
  * @date 1/21/22 1:15 PM
  */
-public abstract class BaseTest extends AbstractGenericTest {
+public abstract class BaseTest extends AbstractCommonTest {
 
     protected Injector injector;
 

@@ -24,7 +24,7 @@ import java.io.IOException;
 @ExtendWith(VertxExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public abstract class AbstractGenericTest {
+public abstract class AbstractCommonTest {
 
     protected JsonObject config;
 

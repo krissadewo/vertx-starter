@@ -16,7 +16,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @ExtendWith(VertxExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public abstract class AbstractApiTest extends AbstractGenericTest {
+public abstract class AbstractApiTest extends AbstractCommonTest {
 
     protected WebClientOptions opts = new WebClientOptions()
         .setDefaultPort(8080)

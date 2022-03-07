@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @author krissadewo
  * @date 2/3/22 7:04 PM
  */
-class OrderUseCaseTest extends BaseTest {
+class ordeOrderUseCaseTest extends BaseTest {
 
     private OrderProduct orderProduct;
 
