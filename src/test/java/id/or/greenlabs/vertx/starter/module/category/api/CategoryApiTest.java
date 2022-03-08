@@ -34,9 +34,9 @@ class CategoryApiTest extends AbstractApiTest {
             .listen(environmentConfig.getEnv().getServicePort(), http -> {
                 if (http.succeeded()) {
                     testContext.assertComplete(vertx.deployVerticle(new CategoryVerticle(router, mongoConfig)));
+                } else {
+                    testContext.failingThenComplete();
                 }
-
-                testContext.completeNow();
             });
     }
 
