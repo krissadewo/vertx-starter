@@ -7,8 +7,6 @@ import id.or.greenlabs.vertx.starter.module.kafka.port.StockAdapter;
 import id.or.greenlabs.vertx.starter.service.ApplicationService;
 import id.or.greenlabs.vertx.starter.util.JsonUtil;
 import io.vertx.core.Vertx;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import reactor.core.scheduler.Schedulers;
 import reactor.kafka.receiver.KafkaReceiver;
 import reactor.kafka.receiver.ReceiverOptions;
@@ -23,8 +21,6 @@ import java.util.List;
  * @date 2/4/22 1:06 PM
  */
 public class OrderListener extends ApplicationService {
-
-    private final Logger logger = LoggerFactory.getLogger(OrderListener.class);
 
     private final ReceiverOptions<String, Object> receiverOptions;
 

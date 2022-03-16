@@ -19,34 +19,33 @@ import javax.inject.Named;
  */
 public class ProductService extends ApplicationService implements ProductAdapter {
 
-    private final ProductRepository repository;
+    @Inject
+    private ProductRepository repository;
 
     @Inject
-    public ProductService(@Named("vertx") Vertx vertx, ProductRepository repository) {
+    public ProductService(@Named("vertx") Vertx vertx) {
         super(vertx);
-
-        this.repository = repository;
     }
 
     @Override
     public Mono<ProductDto> save(ProductDto document) {
         return repository.save(new ProductWrapper().toDocument(document))
-            .map(product -> {
-                return new ProductWrapper().toDto(product);
+            .map(result -> {
+                return new ProductWrapper().toDto(result);
             });
     }
 
     @Override
     public Mono<ProductDto> findBy(String id) {
         return repository.findBy(id)
-            .map(product -> new ProductWrapper().toDto(product));
+            .map(result -> new ProductWrapper().toDto(result));
     }
 
     @Override
     public Mono<String> delete(String id) {
         return repository.delete(id)
-            .map(updateResult -> {
-                if (updateResult.getModifiedCount() > 0) {
+            .map(result -> {
+                if (result.getModifiedCount() > 0) {
                     return StatusCode.OPERATION_SUCCESS;
                 }
 
@@ -57,6 +56,6 @@ public class ProductService extends ApplicationService implements ProductAdapter
     @Override
     public Flux<ProductDto> findBy(ProductDto param, int limit, int offset) {
         return repository.findBy(new ProductWrapper().toParam(param), limit, offset)
-            .map(product -> new ProductWrapper().toDto(product));
+            .map(result -> new ProductWrapper().toDto(result));
     }
 }

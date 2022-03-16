@@ -1,6 +1,5 @@
 package id.or.greenlabs.vertx.starter.api;
 
-import io.vertx.core.Future;
 import io.vertx.core.json.Json;
 import io.vertx.ext.web.RoutingContext;
 import reactor.core.publisher.Mono;
@@ -26,6 +25,6 @@ public interface BaseApi {
                 .setStatusCode(500)
                 .putHeader("content-type", "application/json")
                 .end(Json.encode(object))
-            );
+        );
     }
 }

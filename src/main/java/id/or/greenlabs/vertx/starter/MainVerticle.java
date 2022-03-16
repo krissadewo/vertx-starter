@@ -21,8 +21,6 @@ public class MainVerticle extends AbstractVerticle {
 
     private EnvironmentConfig config;
 
-    private MongoConfig mongoConfig;
-
     @Override
     public void start(Promise<Void> startPromise) throws Exception {
         String env = config().getString("active.profile", null);//fill it with default value
@@ -77,7 +75,7 @@ public class MainVerticle extends AbstractVerticle {
     }
 
     private Future<String> deployCategoryVerticle(Router router) {
-        return vertx.deployVerticle(new CategoryVerticle(router, mongoConfig));
+        return vertx.deployVerticle(new CategoryVerticle(router));
     }
 
     private Future<String> deployKafkaVerticle() {
@@ -88,7 +86,7 @@ public class MainVerticle extends AbstractVerticle {
     }
 
     private void buildMongodb(Vertx vertx) {
-        mongoConfig = MongoConfig.builder()
+       MongoConfig.builder()
             .vertx(vertx)
             .env(config.getEnv())
             .build();

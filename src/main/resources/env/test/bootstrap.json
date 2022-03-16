@@ -10,6 +10,6 @@
     "group": "vertx.starter"
   },
   "mongodb": {
-    "uris": "mongodb://root:root@mongo.local1:27017,mongo.local2:27018,mongo.local3:27019"
+    "uris": "mongodb://root:root@mongo.local1:27017"
   }
 }

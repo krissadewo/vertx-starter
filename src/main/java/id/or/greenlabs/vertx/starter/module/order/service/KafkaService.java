@@ -34,8 +34,8 @@ public class KafkaService extends ApplicationService implements KafkaAdapter {
                 vertx.eventBus()
                     .request(EvbAddress.KAFKA_SERVICE, new Operation(EvbCommand.SEND_ORDER, dto), deliveryOptions)
                     .toCompletionStage())
-            .map(objectMessage -> {
-                return objectMessage.body();
+            .map(result -> {
+                return result.body();
             });
     }
 }

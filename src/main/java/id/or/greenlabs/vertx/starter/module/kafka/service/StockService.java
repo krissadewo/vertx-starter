@@ -34,8 +34,8 @@ public class StockService extends ApplicationService implements StockAdapter {
                 vertx.eventBus()
                     .request(EvbAddress.STOCK_SERVICE, new Operation(EvbCommand.UPDATE_STOCK, dtos), deliveryOptions)
                     .toCompletionStage())
-            .flatMap(objectMessage -> {
-                return Mono.just(objectMessage.body());
+            .flatMap(result -> {
+                return Mono.just(result.body());
             });
     }
 }

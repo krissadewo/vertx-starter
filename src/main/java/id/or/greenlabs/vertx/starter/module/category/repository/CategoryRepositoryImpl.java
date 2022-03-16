@@ -27,9 +27,9 @@ public class CategoryRepositoryImpl extends GenericRepository implements Categor
     @Override
     public Mono<Category> save(Category document) {
         return Mono.from(mongoConfig.getCategoryCollection().insertOne(document))
-            .flatMap(insertOneResult -> {
-                if (insertOneResult.wasAcknowledged() && insertOneResult.getInsertedId() != null) {
-                    document.setId(insertOneResult.getInsertedId().asObjectId().getValue());
+            .flatMap(result -> {
+                if (result.wasAcknowledged() && result.getInsertedId() != null) {
+                    document.setId(result.getInsertedId().asObjectId().getValue());
 
                     return Mono.just(document);
                 }

@@ -32,8 +32,8 @@ public class StockRepositoryImpl extends GenericRepository implements StockRepos
     @Override
     public Mono<List<Stock>> save(List<Stock> documents) {
         return Mono.from(mongoConfig.getStockCollection().insertMany(documents))
-            .flatMap(insertManyResult -> {
-                if (insertManyResult.wasAcknowledged() && insertManyResult.getInsertedIds().size() == documents.size()) {
+            .flatMap(result -> {
+                if (result.wasAcknowledged() && result.getInsertedIds().size() == documents.size()) {
                     return Mono.just(documents);
                 }
 

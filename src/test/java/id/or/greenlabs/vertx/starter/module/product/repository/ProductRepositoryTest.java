@@ -22,9 +22,9 @@ class ProductRepositoryTest extends BaseTest {
 
     private CategoryRepository categoryRepository;
 
-    private static Product product;
+    private Product product;
 
-    private static Category category;
+    private Category category;
 
     @Override
     protected void initInjector(VertxTestContext context) {

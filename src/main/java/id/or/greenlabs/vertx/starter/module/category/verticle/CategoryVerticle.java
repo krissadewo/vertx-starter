@@ -17,19 +17,16 @@ public class CategoryVerticle extends ApplicationVerticle<CategoryService> {
 
     private final Router router;
 
-    private final MongoConfig mongoConfig;
-
-    public CategoryVerticle(Router router, MongoConfig mongoConfig) {
+    public CategoryVerticle(Router router) {
         this.router = router;
-        this.mongoConfig = mongoConfig;
     }
 
     @Override
     protected void buildModule() {
         Guice.createInjector(
-            new VertxModule(vertx, router, mongoConfig),
+            new VertxModule(vertx, router),
             new CategoryModule(),
-            new MongoModule(mongoConfig)
+            new MongoModule(context.get(MongoConfig.class))
         );
     }
 }

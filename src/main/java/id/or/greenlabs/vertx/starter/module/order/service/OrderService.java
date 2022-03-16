@@ -32,16 +32,16 @@ public class OrderService extends ApplicationService implements OrderAdapter {
     @Override
     public Mono<List<OrderDto>> save(List<OrderDto> dtos) {
         return repository.save(new ArrayList<>(new OrderWrapper().toDocument(dtos)))
-            .map(orders -> {
-                return new ArrayList<>(new OrderWrapper().toDto(orders));
+            .map(result -> {
+                return new ArrayList<>(new OrderWrapper().toDto(result));
             });
     }
 
     @Override
     public Flux<OrderDto> findBy(OrderDto param, int limit, int offset) {
         return repository.findBy(new OrderWrapper().toParam(param), limit, offset)
-            .map(order -> {
-                return new OrderWrapper().toDto(order);
+            .map(result -> {
+                return new OrderWrapper().toDto(result);
             });
     }
 }

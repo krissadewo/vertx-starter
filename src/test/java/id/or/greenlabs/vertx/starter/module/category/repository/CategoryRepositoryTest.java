@@ -16,7 +16,7 @@ class CategoryRepositoryTest extends BaseTest {
 
     protected CategoryRepository categoryRepository;
 
-    private static Category category;
+    private Category category;
 
     @Override
     protected void initInjector(VertxTestContext context) {

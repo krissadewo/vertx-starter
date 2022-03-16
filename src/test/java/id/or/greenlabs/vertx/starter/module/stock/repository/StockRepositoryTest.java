@@ -24,7 +24,7 @@ class StockRepositoryTest extends BaseTest {
 
     private OrderRepository orderRepository;
 
-    private static List<id.or.greenlabs.vertx.starter.document.Order> orders;
+    private List<id.or.greenlabs.vertx.starter.document.Order> orders;
 
     @Override
     protected void initInjector(VertxTestContext context) {

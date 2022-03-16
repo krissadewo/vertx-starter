@@ -32,8 +32,8 @@ public class OrderRepositoryImpl extends GenericRepository implements OrderRepos
     @Override
     public Mono<List<Order>> save(List<Order> documents) {
         return Mono.from(mongoConfig.getOrderCollection().insertMany(documents))
-            .flatMap(insertManyResult -> {
-                if (insertManyResult.wasAcknowledged() && insertManyResult.getInsertedIds().size() == documents.size()) {
+            .flatMap(result -> {
+                if (result.wasAcknowledged() && result.getInsertedIds().size() == documents.size()) {
                     return Mono.just(documents);
                 }
 

@@ -20,13 +20,12 @@ import java.util.List;
  */
 public class StockService extends ApplicationService implements StockAdapter {
 
-    private final StockRepository repository;
+    @Inject
+    private  StockRepository repository;
 
     @Inject
-    public StockService(@Named("vertx") Vertx vertx, StockRepository repository) {
+    public StockService(@Named("vertx") Vertx vertx) {
         super(vertx);
-
-        this.repository = repository;
     }
 
     @Override

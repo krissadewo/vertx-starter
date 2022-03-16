@@ -1,5 +1,6 @@
 package id.or.greenlabs.vertx.starter;
 
+import id.or.greenlabs.vertx.starter.context.ApplicationContext;
 import id.or.greenlabs.vertx.starter.service.ApplicationService;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
@@ -16,9 +17,13 @@ public abstract class ApplicationVerticle<T extends ApplicationService> extends 
 
     protected final Logger logger = LoggerFactory.getLogger(MainVerticle.class);
 
+    protected ApplicationContext context;
+
     @Override
     public void start(Promise<Void> startPromise) throws Exception {
         super.start(startPromise);
+
+        this.context = new ApplicationContext(vertx);
 
         buildModule();
     }
